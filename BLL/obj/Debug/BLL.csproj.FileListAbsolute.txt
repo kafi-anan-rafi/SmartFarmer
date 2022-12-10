@@ -1,0 +1,14 @@
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\BLL.dll
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\BLL.pdb
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\AutoMapper.dll
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\DAL.dll
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\EntityFramework.dll
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\DAL.pdb
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\DAL.dll.config
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\AutoMapper.xml
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\bin\Debug\EntityFramework.xml
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\obj\Debug\BLL.dll
+C:\Users\Suvo\Desktop\ASP.NET\FINAL\SmartFarmer\BLL\obj\Debug\BLL.pdb
