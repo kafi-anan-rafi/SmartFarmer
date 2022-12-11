@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdvisorRepo : IRepo<Advisor, int, Advisor>
+    internal class OrderRepo : IRepo<Order, int, Order>
     {
         SmartFarmerDBEntities db;
-        internal AdvisorRepo()
+        internal OrderRepo()
         {
             db = new SmartFarmerDBEntities();
         }
-        public Advisor Add(Advisor obj)
+        public Order Add(Order obj)
         {
-            db.Advisors.Add(obj);
+            db.Orders.Add(obj);
             if (db.SaveChanges() > 0)
             {
                 return obj;
@@ -25,12 +25,12 @@ namespace DAL.Repos
             return null;
         }
 
-        public Advisor Delete(int id)
+        public Order Delete(int id)
         {
             var dbobj = Get(id);
-            if(dbobj != null)
+            if (dbobj != null)
             {
-                db.Advisors.Remove(dbobj);
+                db.Orders.Remove(dbobj);
                 if (db.SaveChanges() > 0)
                 {
                     return dbobj;
@@ -40,17 +40,17 @@ namespace DAL.Repos
             return null;
         }
 
-        public List<Advisor> Get()
+        public List<Order> Get()
         {
-            return db.Advisors.ToList();
+            return db.Orders.ToList();
         }
 
-        public Advisor Get(int id)
+        public Order Get(int id)
         {
-            return db.Advisors.Find(id);
+            return db.Orders.Find(id);
         }
 
-        public Advisor Update(Advisor obj)
+        public Order Update(Order obj)
         {
             var dbojb = Get(obj.Id);
             db.Entry(dbojb).CurrentValues.SetValues(obj);

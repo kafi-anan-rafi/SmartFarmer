@@ -13,6 +13,7 @@ namespace BLL.Services
 {
     public class AdminService
     {
+        // Admin CRUD Advisor
         public static List<AdvisorDTO> Get()
         {
             var data = DataAccessFactory.AdvisorDataAccess().Get();
@@ -35,6 +36,7 @@ namespace BLL.Services
         }
         public static AdvisorDTO Add(AdvisorDTO advisor)
         {
+
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<AdvisorDTO, Advisor>();
                 cfg.CreateMap<Advisor, AdvisorDTO>();
@@ -48,7 +50,21 @@ namespace BLL.Services
             }
             return null;
         }
-        public static AdvisorDTO Delete(AdvisorDTO advisor)
+        public static AdvisorDTO Delete(int id)
+        {
+            var rt = DataAccessFactory.AdvisorDataAccess().Delete(id);
+            if(rt != null)
+            {
+                var config = new MapperConfiguration(cfg => {
+                    cfg.CreateMap<Advisor, AdvisorDTO>();
+                });
+                var mapper = new Mapper(config);
+                var dbadvisor = mapper.Map<AdvisorDTO>(rt);
+                return dbadvisor;
+            }
+            return null;
+        }
+        public static AdvisorDTO Update(AdvisorDTO advisor)
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<AdvisorDTO, Advisor>();
@@ -56,13 +72,15 @@ namespace BLL.Services
             });
             var mapper = new Mapper(config);
             var dbadvisor = mapper.Map<Advisor>(advisor);
-            var rt = DataAccessFactory.AdvisorDataAccess().Delete(dbadvisor);
+            var rt = DataAccessFactory.AdvisorDataAccess().Update(dbadvisor);
             if (rt != null)
             {
                 return mapper.Map<AdvisorDTO>(rt);
             }
             return null;
         }
+
+        // Admin CRUD Doctor
 
     }
 }

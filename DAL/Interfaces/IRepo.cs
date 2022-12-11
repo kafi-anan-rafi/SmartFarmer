@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IUser<CLASS, ID, RET>
+    public interface IRepo<CLASS, ID, RET>
     {
         List<CLASS> Get();
         CLASS Get(ID id);
         RET Add(CLASS obj);
-        RET Delete(CLASS obj);
+        RET Delete(ID id);
         RET Update(CLASS obj);
     }
 }

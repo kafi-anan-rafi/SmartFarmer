@@ -87,9 +87,11 @@
     <Compile Include="EF\User.cs">
       <DependentUpon>SmartFarmer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\AdvisorRepo.cs" />
+    <Compile Include="Repos\OrderRepo.cs" />
+    <Compile Include="Repos\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EF\SmartFarmer.edmx">

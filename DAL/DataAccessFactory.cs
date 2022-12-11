@@ -11,9 +11,17 @@ namespace DAL
 {
     public class DataAccessFactory
     {
-        public static IUser<Advisor, int, Advisor> AdvisorDataAccess()
+        public static IRepo<Advisor, int, Advisor> AdvisorDataAccess()
         {
             return new AdvisorRepo();
+        }
+        public static IRepo<User, int, User> UserDataAccess()
+        {
+            return new UserRepo();
+        }
+        public static IRepo<Order, int, Order> OrderDataAccess()
+        {
+            return new OrderRepo();
         }
     }
 }
