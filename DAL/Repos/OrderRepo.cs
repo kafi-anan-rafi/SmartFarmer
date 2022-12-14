@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class OrderRepo : IRepo<Order, int, Order>
+    internal class OrderRepo : Repo, IRepo<Order, int, Order>
     {
-        SmartFarmerDBEntities db;
-        internal OrderRepo()
-        {
-            db = new SmartFarmerDBEntities();
-        }
         public Order Add(Order obj)
         {
             db.Orders.Add(obj);

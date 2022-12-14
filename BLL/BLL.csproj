@@ -45,11 +45,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\AdvisorDTO.cs" />
+    <Compile Include="DTOs\CommentDto.cs" />
+    <Compile Include="DTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\DoctorDto.cs" />
+    <Compile Include="DTOs\EquipmentDTO.cs" />
+    <Compile Include="DTOs\FarmerDTO.cs" />
+    <Compile Include="DTOs\LoanDTO.cs" />
     <Compile Include="DTOs\OrderDTO.cs" />
+    <Compile Include="DTOs\ProductDto.cs" />
+    <Compile Include="DTOs\RatingDto.cs" />
+    <Compile Include="DTOs\ServicesDto.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\DoctorService.cs" />
+    <Compile Include="Services\EquipmentService.cs" />
+    <Compile Include="Services\FarmerService.cs" />
+    <Compile Include="Services\LoanService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\RatingService.cs" />
+    <Compile Include="Services\ServicesService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

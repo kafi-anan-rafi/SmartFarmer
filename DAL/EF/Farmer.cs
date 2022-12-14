@@ -14,10 +14,21 @@ namespace DAL.EF
     
     public partial class Farmer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Farmer()
+        {
+            this.Equipments = new HashSet<Equipment>();
+            this.Loans = new HashSet<Loan>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Loan> Loans { get; set; }
     }
 }

@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdvisorRepo : IRepo<Advisor, int, Advisor>
+    internal class AdvisorRepo : Repo, IRepo<Advisor, int, Advisor>
     {
-        SmartFarmerDBEntities db;
-        internal AdvisorRepo()
-        {
-            db = new SmartFarmerDBEntities();
-        }
         public Advisor Add(Advisor obj)
         {
             db.Advisors.Add(obj);

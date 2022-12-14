@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : IRepo<User, int, User>
+    internal class UserRepo : Repo, IRepo<User, int, User>
     {
-        SmartFarmerDBEntities db;
-        internal UserRepo()
-        {
-            db = new SmartFarmerDBEntities();
-        }
         public User Add(User obj)
         {
             db.Users.Add(obj);

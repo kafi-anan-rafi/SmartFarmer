@@ -13,7 +13,6 @@ namespace BLL.Services
 {
     public class AdminService
     {
-        // Admin CRUD Advisor
         public static List<AdvisorDTO> Get()
         {
             var data = DataAccessFactory.AdvisorDataAccess().Get();
@@ -79,8 +78,5 @@ namespace BLL.Services
             }
             return null;
         }
-
-        // Admin CRUD Doctor
-
     }
 }

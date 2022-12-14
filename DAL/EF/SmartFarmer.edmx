@@ -14,6 +14,42 @@
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="HourlyRate" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="CommentText" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HourlyRate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SellerId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Farmer">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,6 +57,17 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="FarmerId" Type="int" Nullable="false" />
+          <Property Name="BorrowDate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ToDate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -33,6 +80,26 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="FarmerId" Type="int" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="FarmerId" Type="int" Nullable="false" />
+          <Property Name="RatingPoint" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -56,6 +123,18 @@
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Equipment_Farmer">
+          <End Role="Farmer" Type="Self.Farmer" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="SellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Farmer_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Farmer" Type="Self.Farmer" Multiplicity="0..1" />
@@ -65,6 +144,18 @@
             </Principal>
             <Dependent Role="Farmer">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loan_Farmer">
+          <End Role="Farmer" Type="Self.Farmer" Multiplicity="1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="FarmerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -106,13 +197,28 @@
         </Association>
         <EntityContainer Name="SmartFarmerDBModelStoreContainer">
           <EntitySet Name="Advisor" EntityType="Self.Advisor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Farmer" EntityType="Self.Farmer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loan" EntityType="Self.Loan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Equipment_Farmer" Association="Self.FK_Equipment_Farmer">
+            <End Role="Farmer" EntitySet="Farmer" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Farmer_Users" Association="Self.FK_Farmer_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Farmer" EntitySet="Farmer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loan_Farmer" Association="Self.FK_Loan_Farmer">
+            <End Role="Farmer" EntitySet="Farmer" />
+            <End Role="Loan" EntitySet="Loan" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Order" Association="Self.FK_Order_Order">
             <End Role="Order" EntitySet="Order" />
@@ -150,6 +256,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Farmer_Users" FromRole="Farmer" ToRole="Users" />
+          <NavigationProperty Name="Equipments" Relationship="SmartFarmerDBModel.FK_Equipment_Farmer" FromRole="Farmer" ToRole="Equipment" />
+          <NavigationProperty Name="Loans" Relationship="SmartFarmerDBModel.FK_Loan_Farmer" FromRole="Farmer" ToRole="Loan" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -278,7 +386,115 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Services" EntitySet="Services" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="SmartFarmerDBModel.Comment" />
+          <EntitySet Name="Customers" EntityType="SmartFarmerDBModel.Customer" />
+          <EntitySet Name="Doctors" EntityType="SmartFarmerDBModel.Doctor" />
+          <EntitySet Name="Equipments" EntityType="SmartFarmerDBModel.Equipment" />
+          <EntitySet Name="Loans" EntityType="SmartFarmerDBModel.Loan" />
+          <EntitySet Name="Products" EntityType="SmartFarmerDBModel.Product" />
+          <EntitySet Name="Ratings" EntityType="SmartFarmerDBModel.Rating" />
+          <AssociationSet Name="FK_Equipment_Farmer" Association="SmartFarmerDBModel.FK_Equipment_Farmer">
+            <End Role="Farmer" EntitySet="Farmers" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loan_Farmer" Association="SmartFarmerDBModel.FK_Loan_Farmer">
+            <End Role="Farmer" EntitySet="Farmers" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="CommentText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HourlyRate" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellerId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Farmer" Relationship="SmartFarmerDBModel.FK_Equipment_Farmer" FromRole="Equipment" ToRole="Farmer" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="FarmerId" Type="Int32" Nullable="false" />
+          <Property Name="BorrowDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Farmer" Relationship="SmartFarmerDBModel.FK_Loan_Farmer" FromRole="Loan" ToRole="Farmer" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="FarmerId" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="FarmerId" Type="Int32" Nullable="false" />
+          <Property Name="RatingPoint" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Equipment_Farmer">
+          <End Type="SmartFarmerDBModel.Farmer" Role="Farmer" Multiplicity="1" />
+          <End Type="SmartFarmerDBModel.Equipment" Role="Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="SellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loan_Farmer">
+          <End Type="SmartFarmerDBModel.Farmer" Role="Farmer" Multiplicity="1" />
+          <End Type="SmartFarmerDBModel.Loan" Role="Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="FarmerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -338,6 +554,80 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="HourlyRate" ColumnName="HourlyRate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loans">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Loan">
+              <MappingFragment StoreEntitySet="Loan">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
+                <ScalarProperty Name="FarmerId" ColumnName="FarmerId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FarmerId" ColumnName="FarmerId" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="SmartFarmerDBModel.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="RatingPoint" ColumnName="RatingPoint" />
+                <ScalarProperty Name="FarmerId" ColumnName="FarmerId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

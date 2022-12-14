@@ -15,6 +15,15 @@
         <AssociationConnector Association="SmartFarmerDBModel.FK_Farmer_Users" ManuallyRouted="false" />
         <AssociationConnector Association="SmartFarmerDBModel.FK_Order_Order" ManuallyRouted="false" />
         <AssociationConnector Association="SmartFarmerDBModel.FK_Services_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Comment" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Customer" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Doctor" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Equipment" Width="1.5" PointX="5.625" PointY="12.875" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Loan" Width="1.5" PointX="5.625" PointY="9.875" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Product" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SmartFarmerDBModel.Rating" Width="1.5" PointX="8.75" PointY="6.75" />
+        <AssociationConnector Association="SmartFarmerDBModel.FK_Equipment_Farmer" />
+        <AssociationConnector Association="SmartFarmerDBModel.FK_Loan_Farmer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

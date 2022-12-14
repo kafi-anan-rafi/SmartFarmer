@@ -30,5 +30,12 @@ namespace DAL.EF
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
+        public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<Loan> Loans { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
     }
 }
